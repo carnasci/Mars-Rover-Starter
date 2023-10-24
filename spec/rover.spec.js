@@ -17,9 +17,9 @@ describe("Rover class", function() {
   let response2 = createdRover2.receiveMessage(message2);
 
   
-  it('sets default values for position and MODE and generatorWATTS', function() {
+  it('sets default values for position and MODE and generatorWatts', function() {
     expect(createdRover2.mode).toEqual('NORMAL');
-    expect(createdRover2.generatorWATTS).toEqual(110);
+    expect(createdRover2.generatorWatts).toEqual(110);
     expect(createdRover2.position).toEqual(87382098);
   });
 
@@ -33,7 +33,7 @@ describe("Rover class", function() {
 
   it('responds correctly to the "STATUS_CHECK" command', function () {
     expect(response.results[1].roverStatus.mode).toEqual(createdRover.mode);
-    expect(response.results[1].roverStatus.generatorWATTS).toEqual(createdRover.generatorWATTS);
+    expect(response.results[1].roverStatus.generatorWatts).toEqual(createdRover.generatorWatts);
     expect(response.results[1].roverStatus.position).toEqual(createdRover.position);
   });
 

@@ -21,7 +21,6 @@ describe("GRADING TEST: ", function() {
     expect(response.results[0].completed).toBeTruthy();
     expect(response.results[1].roverStatus.position).toEqual(4321);
     expect(response.results[2].completed).toBeTruthy();
-    console.log(response.results[3].completed)
     expect(response.results[3].completed).toBeFalsy();
     expect(response.results[4].roverStatus.position).toEqual(4321);
     expect(response.results[4].roverStatus.mode).toEqual('LOW_POWER');

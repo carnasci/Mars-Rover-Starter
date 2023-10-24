@@ -1,7 +1,7 @@
 class Rover {
-   constructor( mode = 'NORMAL', generatorWATTS = 110, position = 87382098){
+   constructor( mode = 'NORMAL', generatorWatts = 110, position = 87382098){
       this.mode = mode;
-      this.generatorWATTS = generatorWATTS;
+      this.generatorWatts = generatorWatts;
       this.position = position;
    }
 
@@ -10,14 +10,17 @@ class Rover {
          message: message.name,
          results: [],
       };
-      let processedCommand = {
+      /*let processedCommand = {
          completed: null,
-      };
+      };*/
       for (let i = 0; i < message.commands.length; i++){
+         let processedCommand = {
+            completed: null,
+         };
          if (message.commands[i]){
             processedCommand.completed = true;
-         } else processedCommand.completed = false;
-         response.results.push(processedCommand);
+            //response.results.push(processedCommand);
+         }
 
          if (message.commands[i].commandType === 'STATUS_CHECK') {
             processedCommand.roverStatus = this;
@@ -27,12 +30,14 @@ class Rover {
          }
          if (message.commands[i].commandType === 'MOVE' && this.mode === 'LOW_POWER') {
             processedCommand.completed = false;
-            response.results.push(processedCommand);
-         } else if (message.commands[i].commandType === 'MOVE' && this.mode !== 'LOW_POWER') {
+            //response.results.push(processedCommand);
+         }
+         if (message.commands[i].commandType === 'MOVE' && this.mode !== 'LOW_POWER') {
             this.position = message.commands[i].value;
          }
+         response.results.push(processedCommand);
       }     
-      console.log(response);
+      //console.log(response);
             
       return response;            
       } 
